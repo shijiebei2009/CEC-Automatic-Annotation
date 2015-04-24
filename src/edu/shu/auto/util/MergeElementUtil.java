@@ -43,7 +43,7 @@ public class MergeElementUtil {
 		} catch (DocumentException | FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		// @SuppressWarnings("unchecked")
+		@SuppressWarnings("unchecked")
 		List<Element> eventElements = document.selectNodes("//Sentence/Event");// 拿到所有的Event节点
 		mergeElement(eventElements);// 合并紧邻的相同的要素或者是中间间隔内容长度不超过2的情况
 		boolean writeToXML = WriteToXMLUtil.writeToXML(document, filePath);
@@ -72,6 +72,7 @@ public class MergeElementUtil {
 		// selectNodes是传递进来的所有Event元素
 		for (int outIndex = 0; outIndex < selectNodes.size(); outIndex++) {// 开始遍历所有的Event节点
 			Element event_node = selectNodes.get(outIndex);
+			@SuppressWarnings("unchecked")
 			List<Element> elements = event_node.elements();// 获取Event节点下所有元素名称
 			int size = elements.size();
 			// 只有当size大于1的时候才进一步处理，size大于1，说明有多个同一要素的节点，才有继续的必要
@@ -84,6 +85,7 @@ public class MergeElementUtil {
 					String priorTimeValue = element.getTextTrim();// 拿到前一个节点的值
 					System.out.println("priorTimeValue = " + priorTimeValue);
 					// 开始判断，如果该节点之后紧跟着相同的标签，并且中间没有值的话，开始进行合并
+					@SuppressWarnings("unchecked")
 					List<Node> textNodes = event_node.selectNodes("child::text()");// child::text()选取当前节点的所有文本子节点
 					Node node = textNodes.get(nextIndex);// 注意，这个要取要素内容的下一个节点，才有判断的必要，如果此处用i的话，只能取到要素内容上面的不在标签之内的内容
 					// System.out.println(node.getName());// 拿到的永远是null
@@ -115,7 +117,6 @@ public class MergeElementUtil {
 						size = elements.size();
 						i = -1;// 重新从头开始遍历
 					}
-					// System.out.println(document.asXML());
 				}
 			}
 		}

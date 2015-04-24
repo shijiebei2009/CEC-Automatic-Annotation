@@ -57,7 +57,7 @@ public class LTPAction {
 	private BufferedWriter bw;
 	private String line;
 	private StringBuilder stringBuilder = new StringBuilder();
-	private String ltpCloudURL = "http://api.ltp-cloud.com/analysis/?";// 使用哈工大的LTP调用接口
+	// private String ltpCloudURL = "http://api.ltp-cloud.com/analysis/?";// 使用哈工大的LTP调用接口
 	private String ltpVoiceCloudURL = "http://ltpapi.voicecloud.cn/analysis/?";// 使用哈工大与科大讯飞合作的语音云调用接口
 
 	public void getXML(File file, String type) {
@@ -107,7 +107,7 @@ public class LTPAction {
 			conn = url.openConnection();// 打开连接
 			conn.connect();// 连接
 			br = new BufferedReader(new InputStreamReader(conn.getInputStream(), "utf-8"));
-			fileName = FileUtil.getRootPath("")+ReadConfigFile.getValue("tempXML");
+			fileName = FileUtil.getRootPath("") + ReadConfigFile.getValue("tempXML");
 			bw = new BufferedWriter(new PrintWriter(new File(fileName)));
 			while ((line = br.readLine()) != null) {
 				bw.write(line + "\n");// 注意要换行

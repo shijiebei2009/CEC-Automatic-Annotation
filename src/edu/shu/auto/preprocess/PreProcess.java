@@ -29,7 +29,7 @@ import edu.shu.auto.util.ReadConfigFile;
  * ClassName PreProcess
  * </p>
  * <p>
- * Description 自动标注语料的预处理类
+ * Description 自动标注语料的预处理类，提供对外暴露的接口，可以调用
  * </p>
  * 
  * @author wangxu wangx89@126.com

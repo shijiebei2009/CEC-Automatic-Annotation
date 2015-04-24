@@ -23,7 +23,7 @@ import edu.shu.auto.util.WordsUtil;
  * ClassName LTP_Parse
  * </p>
  * <p>
- * Description 使用哈工大的LTP进行分词标注，然后根据分析结果来对生语料进行标注
+ * Description 使用哈工大的LTP进行分词标注，然后根据分析结果来对生语料进行标注，所使用的识别方法是从CEC语料库中挖掘的规则，挖掘算法采用韩家炜提出的序列模式挖掘算法
  * </p>
  * 
  * @author wangxu wangx89@126.com
