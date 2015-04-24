@@ -19,4 +19,6 @@ resources.synset中存放的是从CEC语料库中抽取的不同类型的触发�
 
 5.使用方式，拷贝AutoAnnotation.jar到项目之中，拷贝conf目录到项目之中，使用方式参见example.edu.shu.auto.annotation.Demo.java
 
+6.CEC语料库及标注样例参见：https://github.com/shijiebei2009/CEC-Corpus
+
 

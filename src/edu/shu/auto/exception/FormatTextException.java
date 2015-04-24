@@ -11,7 +11,7 @@ import edu.shu.auto.log.MyLogger;
  * ClassName FormatTextException
  * </p>
  * <p>
- * Description 文本格式化异常类
+ * Description 自定义文本格式化异常类
  * </p>
  * 
  * @author TKPad wangx89@126.com
