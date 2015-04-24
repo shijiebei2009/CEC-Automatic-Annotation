@@ -2,6 +2,7 @@
 自动化标注，添加对应的标签，并进行格式校验，保存为XML文件等。
 
 2.开发环境(不保证支持Unix/Linux环境)：
+Licence：Apache Licence Version2
 Version：1.0.0
 项目编码设定：UTF-8
 开发工具：Eclipse 4.4 luna
@@ -16,6 +17,6 @@ JDK version：Oracle JDK 1.8+
 4.请将在LTP-cloud注册之后获取的api_key填入config.properties文件中，覆盖旧值即可；
 resources.synset中存放的是从CEC语料库中抽取的不同类型的触发词库，并且以一定的算法，经过同义词词林扩展版扩充之后的触发词库，denoter是包括所有类型的触发词的汇总表
 
-5.使用方式，拷贝AutoAnnotation.jar到项目之中，拷贝conf目录到项目之中，使用方式参加example.edu.shu.auto.annotation.Demo.java
+5.使用方式，拷贝AutoAnnotation.jar到项目之中，拷贝conf目录到项目之中，使用方式参见example.edu.shu.auto.annotation.Demo.java
 
 
