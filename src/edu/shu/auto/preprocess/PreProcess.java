@@ -330,7 +330,7 @@ public class PreProcess {
 	 * @throws IOException
 	 *
 	 */
-	public static List<String> getParagraph(String filePath, String charset) throws IOException {
+	private static List<String> getParagraph(String filePath, String charset) throws IOException {
 		List<String> res = new ArrayList<String>();
 		StringBuilder sb = new StringBuilder();// 拼接读取的内容
 		InputStreamReader isr = new InputStreamReader(new FileInputStream(filePath), charset);
