@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Body> 
+	<Title>华北最大家纺市场遭大火 当地称与恐怖分子无关</Title>  
+	<ReportTime type="absTime">2014-05-14 20:59:03</ReportTime>  
+	<Content> 
+		<Paragraph> 
+			<Sentence> 
+				<Event eid="e1">（环球时报记者，小黑，小白，综合报道） 
+					<Time tid="t1">11日晚，</Time>  
+					<Location lid="l1">华北</Location>最大家纺市场-- 
+					<Location lid="l1">高阳</Location>纺织商贸城 
+					<Time tid="t1">凌晨1:45</Time>遭遇 
+					<Denoter did="d1" type="emergency">大火</Denoter> 
+				</Event>  
+				<Event eid="e2">， 
+					<Denoter did="d2" type="emergency">大火</Denoter>持续了两个多小时，重灾区为7000平方米的服装广场，300余服装摊位化为灰烬。
+				</Event> 
+			</Sentence> 
+		</Paragraph>  
+		<Paragraph> 
+			<Sentence> 
+				<Event eid="e3"> 
+					<Time tid="t3">事发后，</Time>网上 
+					<Denoter did="d3" type="movement">传出</Denoter> 
+				</Event>  
+				<Event eid="e4" type="thoughtevent"> 
+					<Participant sid="s4">一条消息</Participant>， 
+					<Denoter did="d4" type="statement">称</Denoter> 
+				</Event>  
+				<Event eid="e5">这次 
+					<Denoter did="d5" type="emergency">火灾</Denoter> 
+				</Event>  
+				<Event eid="e6">是恐怖分子故意 
+					<Denoter did="d6" type="operation">制造</Denoter> 
+				</Event>  
+				<Event eid="e7">的， 
+					<Location lid="l7">在当地</Location>  
+					<Denoter did="d7" type="operation">引发</Denoter>恐慌情绪。
+				</Event> 
+			</Sentence> 
+		</Paragraph>  
+		<Paragraph> 
+			<Sentence> 
+				<Event eid="e8" type="thoughtevent"> 
+					<Time tid="t8">昨日，</Time>  
+					<Participant sid="s8">高阳县委宣传部</Participant>  
+					<Time tid="t8">当地时间16：30</Time>辟谣 
+					<Denoter did="d8" type="statement">称</Denoter> 
+				</Event>  
+				<Event eid="e9">， 
+					<Denoter did="d9" type="emergency">火灾</Denoter> 
+				</Event>  
+				<Event eid="e10">与恐怖分子无关， 
+					<Time tid="t10">目前</Time>  
+					<Denoter did="d10" type="emergency">事件</Denoter> 
+				</Event>  
+				<Event eid="e11" type="thoughtevent">还在 
+					<Denoter did="d11" type="statement">调查</Denoter>中。
+				</Event> 
+			</Sentence>  
+			<Sentence> 
+				<Event eid="e12" type="thoughtevent"> 
+					<Time tid="t12" type="absTime">2121年的1月1日，</Time>我 
+					<Denoter did="d12" type="statement">认为</Denoter>昨个学校周边的KTV，宾馆之类的论坛。
+				</Event> 
+			</Sentence> 
+		</Paragraph>  
+		<Paragraph> 
+			<Sentence> 
+				<Event eid="e13"> 
+					<Location lid="l13">云南省普洱市景谷县</Location>  
+					<Time tid="t13" type="absTime">2014年8月7日</Time>发生 
+					<Participant sid="s13">6.6级地震</Participant>，不仅 
+					<Denoter did="d13" type="perception">牵动</Denoter> 
+				</Event>  
+				<Event eid="e14">着国民的心，也引来外媒密切 
+					<Denoter did="d14" type="action">关注</Denoter>。
+				</Event> 
+			</Sentence>  
+			<Sentence> 
+				<Event eid="e15"> 
+					<Time tid="t15">截至8日，</Time>此次 
+					<Denoter did="d15" type="emergency">地震</Denoter> 
+				</Event>  
+				<Event eid="e16">造成 
+					<Participant sid="s16">1人</Participant>  
+					<Denoter did="d16" type="stateChange">遇难</Denoter> 
+				</Event>  
+				<Event eid="e17">， 
+					<Participant sid="s17">324人</Participant>  
+					<Denoter did="d17" type="stateChange">受伤</Denoter>。
+				</Event> 
+			</Sentence>  
+			<Sentence> 
+				<Event eid="e18" type="thoughtevent"> 
+					<Participant sid="s18">法国欧洲新闻电视台</Participant>  
+					<Denoter did="d18" type="statement">称</Denoter> 
+				</Event>  
+				<Event eid="e19" type="thoughtevent">，随着 
+					<Denoter did="d19" type="statement">统计</Denoter> 
+				</Event>  
+				<Event eid="e20"> 
+					<Denoter did="d20" type="operation">工作</Denoter> 
+				</Event>  
+				<Event eid="e21">走上轨道， 
+					<Denoter did="d21" type="stateChange">伤亡</Denoter>数字可能还会上升。
+				</Event> 
+			</Sentence>  
+			<Sentence> 
+				<Event eid="e22" type="thoughtevent"> 
+					<Time tid="t22">地震发生后，</Time>  
+					<Participant sid="s22">中国国家主席习近平、国务院总理李克强</Participant>分别 
+					<Denoter did="d22" type="statement">批示</Denoter> 
+				</Event>  
+				<Event eid="e23" type="thoughtevent"> 
+					<Denoter did="d23" type="statement">称</Denoter> 
+				</Event>  
+				<Event eid="e24">，要全力以赴 
+					<Denoter did="d24" type="operation">抢救</Denoter> 
+				</Event>  
+				<Event eid="e25"> 
+					<Denoter did="d25" type="stateChange">受伤</Denoter> 
+				</Event>  
+				<Event eid="e26">群众，要千方百计减少 
+					<Denoter did="d26" type="stateChange">伤亡</Denoter>。
+				</Event> 
+			</Sentence> 
+		</Paragraph> 
+	</Content>  
+	<eRelation relType="Thoughtcontent" thoughtevent_eid="e" thoughtcontent_eids="e"/>  
+	<eRelation relType="Thoughtcontent" thoughtevent_eid="e" thoughtcontent_eids="e"/>  
+	<eRelation relType="Thoughtcontent" thoughtevent_eid="e" thoughtcontent_eids="e"/>  
+	<eRelation relType="Thoughtcontent" thoughtevent_eid="e" thoughtcontent_eids="e"/>  
+	<eRelation relType="Thoughtcontent" thoughtevent_eid="e" thoughtcontent_eids="e"/>  
+	<eRelation relType="Thoughtcontent" thoughtevent_eid="e" thoughtcontent_eids="e"/>  
+	<eRelation relType="Thoughtcontent" thoughtevent_eid="e" thoughtcontent_eids="e"/>  
+	<eRelation relType="Thoughtcontent" thoughtevent_eid="e" thoughtcontent_eids="e"/> 
+</Body>
