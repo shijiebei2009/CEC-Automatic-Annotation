@@ -3,12 +3,19 @@
 
 2.开发环境(不保证支持Unix/Linux环境)：
 Licence：Apache Licence Version2
+
 Version：1.0.0
+
 项目编码设定：UTF-8
+
 开发工具：Eclipse 4.4 luna
+
 操作系统OS：Windows7 64bit
-JDK version：Oracle JDK 1.8+
+
+JDK version：Oracle JDK 1.8+ 64bit
+
 日志：log4j2.0
+
 单元测试：JUnit4.1.0
 
 3.本项目开发及维护者：王旭(wangx89@126.com)
