@@ -20,7 +20,7 @@ import edu.shu.auto.preprocess.PreProcess;
  */
 public class Demo {
 	public static void main(String[] args) {
-		String filePath = "d:/test.txt";
+		String filePath = "C:\\Users\\TKPad\\Desktop\\1月27日1艘船只位岛附近海域活动.txt";
 		StringBuilder text = PreProcess.getText(filePath);
 		System.out.println(text);
 	}

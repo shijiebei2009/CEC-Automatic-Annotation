@@ -31,6 +31,7 @@ import org.dom4j.Element;
 import org.dom4j.io.OutputFormat;
 import org.dom4j.io.SAXReader;
 import org.dom4j.io.XMLWriter;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import edu.shu.auto.constant.EventConstant;
@@ -113,6 +114,7 @@ public class FilterUtil {
 
 	// 测试List与Set相互转化
 	@Test
+	@Ignore
 	public void testListAndSet() {
 		List<String> list = new ArrayList<String>();
 		Set<String> set = new TreeSet<String>();
@@ -129,7 +131,7 @@ public class FilterUtil {
 	public static void filter3(String filePath) {
 
 		// String dir = FileUtil.getRootPath() + ReadConfigFile.getValue("denoterDirectory");
-		String dir = FileUtil.getRootPath("")+ReadConfigFile.getValue("denoterDirectory");
+		String dir = FileUtil.getRootPath("") + ReadConfigFile.getValue("denoterDirectory");
 		String actionPath = dir + "action_denoter.txt";
 		String emergencyPath = dir + "emergency_denoter.txt";
 		String movementPath = dir + "movement_denoter.txt";
@@ -189,7 +191,7 @@ public class FilterUtil {
 	 * Title: filter5
 	 * </p>
 	 * <p>
-	 * Description: 对自动标注结果进行第五遍过滤，主要是合并一个事件<Event>标签之内，紧邻的或者仅仅有两个字符距离之内的相同标签
+	 * Description: 对自动标注结果进行第五遍过滤，主要是合并一个事件&lt;Event&gt;标签之内，紧邻的或者仅仅有两个字符距离之内的相同标签
 	 * </p>
 	 * 
 	 * @param filePath
@@ -314,6 +316,7 @@ public class FilterUtil {
 	}
 
 	@Test
+	@Ignore
 	public void testFilterList() {
 		List<String> list = new ArrayList<String>();
 		list.add("TMP");
@@ -490,5 +493,74 @@ public class FilterUtil {
 			}
 		}
 		return result;
+	}
+
+	/**
+	 * 
+	 * <p>
+	 * Title: fileterLongitudeLatitude
+	 * </p>
+	 * <p>
+	 * Description: 专门用来过滤经度和纬度，比如北纬145度22分14秒和东经108度28分23秒等要将其识别并添加Location标签，构造正则表达式进行识别<br/>
+	 * 北纬为正数，南纬为负数，东经正数，西经为负数；
+	 * </p>
+	 * 
+	 * @param tempPath
+	 *
+	 */
+	public static void fileterLongitudeLatitude(String tempPath) {
+		// |北纬145度22分14秒|西经145度22分14秒|东经145度22分14秒
+		// Pattern p = Pattern.compile("南纬(\\d+)度(\\d+)分(\\d+)秒");
+		// Pattern p = Pattern.compile("\\u5357\\u7eac\\d{3}\\u5ea6");
+		// String s = "南纬145度22分14秒";
+		// 东经108度28分23秒
+		// Matcher m = p.matcher(s);
+		// boolean b = m.matches();
+		// int end = m.end();
+		// int start = m.start();
+		// System.out.println(start);
+		// System.out.println(end);
+		// Pattern p=Pattern.compile("\u5357\u7eac\\d{3}\u5ea6\\d{2}\u5206\\d{2}\u79d2");
+		// String s="发酵刷脸付款南纬145度22分14秒";
+		// s = s.substring(s.lastIndexOf("\u5357\u7eac"), s.length());
+		// System.out.println(s);
+		//
+		// Matcher m=p.matcher(s);
+		// boolean b=m.matches();
+		// System.out.println(b);
+		Pattern compile = Pattern.compile("^.*(南纬|北纬|东经|西经)\\d+(度)\\d+(分)\\d+(秒)");
+		String s = "发酵刷脸付款北纬145度22分14秒";
+		Matcher matcher = compile.matcher(s);
+		boolean matches = matcher.matches();
+		System.out.println(matches);
+		// Pattern p = Pattern.compile("南纬");
+		// String s = "发酵刷脸付款南纬145度22分14秒";
+		// Matcher m = p.matcher(s);
+		// boolean b = m.matches();
+		// System.out.println(b);
+
+		// InputStream is = null;
+		// try {
+		// is = new FileInputStream(new File(tempPath));
+		// } catch (FileNotFoundException e1) {
+		// e1.printStackTrace();
+		// MyLogger.logger.error(e1.getMessage());
+		// }
+		// SAXReader saxReader = new SAXReader();
+		// Document document = null;
+		// try {
+		// document = saxReader.read(is);
+		// } catch (DocumentException e1) {
+		// e1.printStackTrace();
+		// MyLogger.logger.error(e1.getMessage());
+		// }
+	}
+
+	@Test
+	public void test() {
+
+		boolean absTime = isAbsTime("北京时间2015年8月17日11时25分");
+		System.out.println(absTime);
+		fileterLongitudeLatitude("C:\\Users\\TKPad\\Desktop\\a.xml");
 	}
 }
