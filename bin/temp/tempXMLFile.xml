@@ -21,7 +21,8 @@
 					<Denoter did="d3" type="statement">发现</Denoter> 
 				</Event>  
 				<Event eid="e4">，1艘船只位 
-					<Location lid="l4">钓鱼岛以西</Location>约29海里处海域，北纬145度22分14秒、东经108度28分23秒， 
+					<Location lid="l4">钓鱼岛以西</Location>约29海里处海域， 
+					<Location lid="l4">北纬145度22分14秒、东经108度28分23秒</Location>， 
 					<Denoter did="d4" type="action">活动</Denoter>。
 				</Event> 
 			</Sentence> 

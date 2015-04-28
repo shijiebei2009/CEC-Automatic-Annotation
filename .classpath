@@ -18,5 +18,6 @@
 	<classpathentry kind="lib" path="dom4j/xsdlib-20030807.jar"/>
 	<classpathentry kind="lib" path="commons/commons-io-2.4.jar"/>
 	<classpathentry kind="lib" path="commons/commons-lang3-3.3.2.jar"/>
+	<classpathentry kind="lib" path="commons/commons-collections4-4.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -11,6 +11,8 @@ import org.dom4j.Element;
 import org.dom4j.Node;
 import org.dom4j.io.SAXReader;
 
+import edu.shu.auto.log.MyLogger;
+
 /**
  * 
  * <p>
@@ -59,7 +61,8 @@ public class MergeElementUtil {
 	 * Title: mergeElement
 	 * </p>
 	 * <p>
-	 * Description: 该函数可以实现将两个紧邻的标签内容进行合并，也就是减少标签个数，比如<Time>a</Time><Time>b</Time>合并之后为<Time>ab</Time>
+	 * Description:
+	 * 该函数可以实现将两个紧邻的标签内容进行合并，也就是减少标签个数，比如&lt;Time&gt;a&lt;/Time&gt;&lt;Time&gt;b&lt;/Time&gt;合并之后为&lt;Time&gt;ab&lt;/Time&gt;
 	 * </p>
 	 * 
 	 * @param selectNodes
@@ -81,39 +84,39 @@ public class MergeElementUtil {
 					int nextIndex = i + 1;
 					Element element = elements.get(i);
 					String priorNodeName = element.getName().trim();
-					System.out.println("priorNodeName = " + priorNodeName);
+					MyLogger.logger.info("priorNodeName = " + priorNodeName);
 					String priorTimeValue = element.getTextTrim();// 拿到前一个节点的值
-					System.out.println("priorTimeValue = " + priorTimeValue);
+					MyLogger.logger.info("priorTimeValue = " + priorTimeValue);
 					// 开始判断，如果该节点之后紧跟着相同的标签，并且中间没有值的话，开始进行合并
 					@SuppressWarnings("unchecked")
 					List<Node> textNodes = event_node.selectNodes("child::text()");// child::text()选取当前节点的所有文本子节点
 					Node node = textNodes.get(nextIndex);// 注意，这个要取要素内容的下一个节点，才有判断的必要，如果此处用i的话，只能取到要素内容上面的不在标签之内的内容
 					// System.out.println(node.getName());// 拿到的永远是null
 					String nodeValue = node.getText().trim();// 拿到不属于标签之内的值，此处有一个注意点，如果该值前面有空行，那么拿到的永远都是空，否则可以取得该值
-					System.out.println("nodeValue = " + nodeValue);
+					MyLogger.logger.info("nodeValue = " + nodeValue);
 					int length = nodeValue != null ? nodeValue.length() : 0;
 					String nextNodeName = null;
 					String nextTimeValue = null;
 					if ((nextIndex) < size) {
 						Element tempEle = elements.get(nextIndex);
 						nextNodeName = tempEle.getName().trim();
-						System.out.println("nextNodeName = " + nextNodeName);
+						MyLogger.logger.info("nextNodeName = " + nextNodeName);
 						nextTimeValue = tempEle.getTextTrim();
-						System.out.println("nextTimeValue = " + nextTimeValue);
+						MyLogger.logger.info("nextTimeValue = " + nextTimeValue);
 					}
-					System.out.println("nodeValue = " + nodeValue);
+					MyLogger.logger.info("nodeValue = " + nodeValue);
 					// 只要length小于等于2，并且两个标签名称相同，才可以认为两个标签的内容可以合并
 					if (length <= 2 && priorNodeName.equals(nextNodeName)) {
-						System.out.println("匹配成功!");
+						MyLogger.logger.info("匹配成功!");
 						// 那么需要将三部分的值内容拼接到一起，并且删除后面一个标签
 						String totalValue = priorTimeValue + nodeValue + nextTimeValue;
-						System.out.println("拼接之后的结果：" + totalValue);
+						MyLogger.logger.info("拼接之后的结果：" + totalValue);
 						// 重新设置前一个标签的内容
 						element.setText(totalValue);
 						Element remove = elements.remove(nextIndex);// 移除后一个，注意重新置size，重新循环，这句话是移除标签及标签之内的内容
-						System.out.println("remove掉的值是 = " + remove.getStringValue());
+						MyLogger.logger.info("remove掉的值是 = " + remove.getStringValue());
 						boolean removeFlag = elements.remove(node);// 这句话是移除标签之外的内容，即便移除成功，返回值依然是false，因为该值不在标签之内，所以不认为是一个元素，那么只有移除一个元素的时候，返回值才为true
-						System.out.println("removeFlag = " + removeFlag);
+						MyLogger.logger.info("removeFlag = " + removeFlag);
 						size = elements.size();
 						i = -1;// 重新从头开始遍历
 					}

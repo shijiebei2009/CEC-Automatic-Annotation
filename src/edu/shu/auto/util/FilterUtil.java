@@ -381,6 +381,18 @@ public class FilterUtil {
 		return list;
 	}
 
+	/**
+	 * 
+	 * <p>
+	 * Title: filter4
+	 * </p>
+	 * <p>
+	 * Description: 为标签的ID属性进行赋值
+	 * </p>
+	 * 
+	 * @param tempPath
+	 *
+	 */
 	public static void filter4(String tempPath) {
 		int idIndex = 1;// 定义id的开始数字
 		InputStream is = null;
@@ -508,37 +520,38 @@ public class FilterUtil {
 	 * @param tempPath
 	 *
 	 */
-	public static void fileterLongitudeLatitude(String tempPath) {
-		// |北纬145度22分14秒|西经145度22分14秒|东经145度22分14秒
-		// Pattern p = Pattern.compile("南纬(\\d+)度(\\d+)分(\\d+)秒");
-		// Pattern p = Pattern.compile("\\u5357\\u7eac\\d{3}\\u5ea6");
-		// String s = "南纬145度22分14秒";
-		// 东经108度28分23秒
-		// Matcher m = p.matcher(s);
-		// boolean b = m.matches();
-		// int end = m.end();
-		// int start = m.start();
-		// System.out.println(start);
-		// System.out.println(end);
-		// Pattern p=Pattern.compile("\u5357\u7eac\\d{3}\u5ea6\\d{2}\u5206\\d{2}\u79d2");
-		// String s="发酵刷脸付款南纬145度22分14秒";
-		// s = s.substring(s.lastIndexOf("\u5357\u7eac"), s.length());
-		// System.out.println(s);
-		//
-		// Matcher m=p.matcher(s);
-		// boolean b=m.matches();
-		// System.out.println(b);
-		Pattern compile = Pattern.compile("^.*(南纬|北纬|东经|西经)\\d+(度)\\d+(分)\\d+(秒)");
-		String s = "发酵刷脸付款北纬145度22分14秒";
-		Matcher matcher = compile.matcher(s);
-		boolean matches = matcher.matches();
-		System.out.println(matches);
-		// Pattern p = Pattern.compile("南纬");
-		// String s = "发酵刷脸付款南纬145度22分14秒";
-		// Matcher m = p.matcher(s);
-		// boolean b = m.matches();
-		// System.out.println(b);
-
+	public static void filterLongitudeLatitude(String tempPath) {
+		List<String> results = new ArrayList<String>();
+		try {
+			List<String> contents = FileUtils.readLines(new File(tempPath));
+			Iterator<String> iterator = contents.iterator();
+			while (iterator.hasNext()) {
+				String line = iterator.next().trim();
+				// 调用自己封装的split函数，可以保留切分符
+				String[] subLine = MySplit.split(line, ",|、");
+				for (String str : subLine) {
+					if (isLongitudeLatitude(str)) {
+						// 如果包含经纬度信息的话，则进一步处理
+						String subStr = getSubStr(str);
+						String targetStr = Annotation.START_LOCATION + subStr + Annotation.END_LOCATION;
+						results.add(str.replace(subStr, targetStr));
+					} else {
+						// 不包含，直接加入即可
+						results.add(str);
+					}
+				}
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+			MyLogger.logger.error(e.getMessage());
+		}
+		String convertListToString = convertListToString(results);
+		try {
+			FileUtils.writeStringToFile(new File(tempPath), convertListToString);
+		} catch (IOException e) {
+			e.printStackTrace();
+			MyLogger.logger.error(e.getMessage());
+		}
 		// InputStream is = null;
 		// try {
 		// is = new FileInputStream(new File(tempPath));
@@ -554,13 +567,133 @@ public class FilterUtil {
 		// e1.printStackTrace();
 		// MyLogger.logger.error(e1.getMessage());
 		// }
+		// @SuppressWarnings("unchecked")
+		// List<Element> events = document.selectNodes("//Sentence/Event");
+		// for (int i = 0; i < events.size(); i++) {
+		// Element eventNode = events.get(i);
+		// @SuppressWarnings("unchecked")
+		// List<Element> elements = eventNode.elements();
+		// System.out.println("++++++++++++++++++");
+		// for (int j = 0; j < elements.size(); j++) {
+		// Element element = elements.get(j);
+		// // System.out.println(element.getName());
+		// @SuppressWarnings("unchecked")
+		// List<Node> selectNodes = eventNode.selectNodes("child::text()");
+		// Node node2 = selectNodes.get(j);
+		//
+		// System.out.println(node2.getParent().getName());
+		// System.out.println(node2.getText().trim());
+		// // for (int k = 0; k < selectNodes.size(); k++) {
+		// // Node node = selectNodes.get(k);
+		// // System.out.println(node.getParent().getName());
+		// // System.out.println(node.getText());
+		// // //移除节点
+		// // // element.remove(node);
+		// // }
+		// // String name2 = element.getName();
+		// // 在结束的时候注意取最后一个
+		// if (j == elements.size() - 1) {
+		// Node node = selectNodes.get(j + 1);
+		// System.out.println(node.getParent().getName());
+		// System.out.println(node.getText().trim());
+		//
+		// }
+		// }
+
+		//
+		// @SuppressWarnings("unchecked")
+		// List<Node> nodes = eventNode.selectNodes("child::text()");
+		// for (int j = 0; j < nodes.size(); j++) {
+		// nodes.get(j).getno
+		//
+		// System.out.println(nodes.get(j).getText().trim());
+		// }
+		// }
+
 	}
 
-	@Test
-	public void test() {
+	/**
+	 * 
+	 * <p>
+	 * Title: convertListToString
+	 * </p>
+	 * <p>
+	 * Description: 将输入的List参数列表转成String
+	 * </p>
+	 * 
+	 * @param list
+	 * @return list->String
+	 *
+	 */
+	private static String convertListToString(List<String> list) {
+		StringBuilder res = new StringBuilder();
+		Iterator<String> iterator = list.iterator();
+		while (iterator.hasNext()) {
+			String next = iterator.next();
+			res.append(next);
+		}
+		return res.toString();
+	}
 
-		boolean absTime = isAbsTime("北京时间2015年8月17日11时25分");
-		System.out.println(absTime);
-		fileterLongitudeLatitude("C:\\Users\\TKPad\\Desktop\\a.xml");
+	/**
+	 * 
+	 * <p>
+	 * Title: getSubStr
+	 * </p>
+	 * <p>
+	 * Description: 获取包含经纬度信息的子串
+	 * </p>
+	 * 
+	 * @param str
+	 * @return 切割得到的子串
+	 *
+	 */
+	private static String getSubStr(String str) {
+		String res = null;
+		int start = -1;
+		// 获得开始字串索引
+		int indexOf = str.indexOf("南纬");
+		if (indexOf != -1) {
+			start = indexOf;
+		}
+		indexOf = str.indexOf("北纬");
+		if (indexOf != -1) {
+			start = indexOf;
+		}
+		indexOf = str.indexOf("东经");
+		if (indexOf != -1) {
+			start = indexOf;
+		}
+		indexOf = str.indexOf("西经");
+		if (indexOf != -1) {
+			start = indexOf;
+		}
+		if (start != -1) {
+			// 获得结束字串索引
+			int end = str.indexOf("秒", start);
+			if (end != -1 && (end - start) <= 12) {
+				res = str.substring(start, end + 1);
+			}
+		}
+		return res;
+	}
+
+	/**
+	 * 
+	 * <p>
+	 * Title: isLongitudeLatitude
+	 * </p>
+	 * <p>
+	 * Description: 判断给定的文本中是否包含经纬度等具体地点位置的字串
+	 * </p>
+	 * 
+	 * @param str
+	 * @return 判断结果，true：包含，false：不包含
+	 *
+	 */
+	public static boolean isLongitudeLatitude(String str) {
+		Pattern compile = Pattern.compile("^.*(南纬|北纬|东经|西经)\\d+(度)\\d+(分)\\d+(秒).*$");
+		Matcher matcher = compile.matcher(str);
+		return matcher.matches();
 	}
 }

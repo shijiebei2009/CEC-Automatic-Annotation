@@ -299,6 +299,9 @@ public class PreProcess {
 		}
 		MyLogger.logger.info(returnSb);
 
+		// 在第四遍过滤之前，进行经纬度的过滤，主要是将将维度识别为Location
+		FilterUtil.filterLongitudeLatitude(tempPath);
+
 		// 在此处进行第四遍过滤，调用filter方法
 		FilterUtil.filter4(tempPath);
 		// 在此处进行第五遍过滤
