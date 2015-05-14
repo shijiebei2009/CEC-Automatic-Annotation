@@ -24,6 +24,7 @@ import java.util.regex.Pattern;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.output.FileWriterWithEncoding;
+import org.apache.commons.lang3.ArrayUtils;
 import org.dom4j.Attribute;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
@@ -128,6 +129,18 @@ public class FilterUtil {
 		System.out.println(set);
 	}
 
+	/**
+	 * 
+	 * <p>
+	 * Title: filter3
+	 * </p>
+	 * <p>
+	 * Description: 第三遍过滤主要是识别触发词的类型
+	 * </p>
+	 * 
+	 * @param filePath
+	 *
+	 */
 	public static void filter3(String filePath) {
 
 		// String dir = FileUtil.getRootPath() + ReadConfigFile.getValue("denoterDirectory");
@@ -528,16 +541,21 @@ public class FilterUtil {
 			while (iterator.hasNext()) {
 				String line = iterator.next().trim();
 				// 调用自己封装的split函数，可以保留切分符
-				String[] subLine = MySplit.split(line, ",|、");
-				for (String str : subLine) {
-					if (isLongitudeLatitude(str)) {
-						// 如果包含经纬度信息的话，则进一步处理
-						String subStr = getSubStr(str);
-						String targetStr = Annotation.START_LOCATION + subStr + Annotation.END_LOCATION;
-						results.add(str.replace(subStr, targetStr));
-					} else {
-						// 不包含，直接加入即可
-						results.add(str);
+				String[] subLine = MySplit.split(line, "，|,|、");
+				MyLogger.logger.info("subLine = " + ArrayUtils.toString(subLine));
+				if (null != subLine) {
+					for (String str : subLine) {
+						if (isLongitudeLatitude(str)) {
+							// 如果包含经纬度信息的话，则进一步处理
+							String subStr = getSubStr(str);
+							// if (null != subStr) {
+							String targetStr = Annotation.START_LOCATION + subStr + Annotation.END_LOCATION;
+							results.add(str.replace(subStr, targetStr));
+							// }
+						} else {
+							// 不包含，直接加入即可
+							results.add(str);
+						}
 					}
 				}
 			}
@@ -671,6 +689,10 @@ public class FilterUtil {
 		if (start != -1) {
 			// 获得结束字串索引
 			int end = str.indexOf("秒", start);
+			if (end == -1) {
+				// 说明不存在秒，那么开始查找分
+				end = str.indexOf("分", start);
+			}
 			if (end != -1 && (end - start) <= 12) {
 				res = str.substring(start, end + 1);
 			}
@@ -684,7 +706,7 @@ public class FilterUtil {
 	 * Title: isLongitudeLatitude
 	 * </p>
 	 * <p>
-	 * Description: 判断给定的文本中是否包含经纬度等具体地点位置的字串
+	 * Description: 判断给定的文本中是否包含经纬度等具体地点位置的字串，其中正则表达式配置为'秒'可选
 	 * </p>
 	 * 
 	 * @param str
@@ -692,7 +714,7 @@ public class FilterUtil {
 	 *
 	 */
 	public static boolean isLongitudeLatitude(String str) {
-		Pattern compile = Pattern.compile("^.*(南纬|北纬|东经|西经)\\d+(度)\\d+(分)\\d+(秒).*$");
+		Pattern compile = Pattern.compile("^.*(南纬|北纬|东经|西经)\\d+(度)\\d+(分)((\\d+(秒))?).*$");
 		Matcher matcher = compile.matcher(str);
 		return matcher.matches();
 	}

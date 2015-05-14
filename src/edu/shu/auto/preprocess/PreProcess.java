@@ -276,7 +276,7 @@ public class PreProcess {
 		returnSb.append(Annotation.END_BODY);
 		returnSb.toString().trim();
 		MyLogger.logger.info("第二遍过滤结果：\n");
-		MyLogger.logger.info(returnSb);
+		System.out.println(returnSb);
 
 		// String tempPath = FileUtil.getRootPath() + ReadConfigFile.getValue("tempXML");
 		String tempPath = FileUtil.getRootPath("") + ReadConfigFile.getValue("tempXML");
@@ -297,7 +297,7 @@ public class PreProcess {
 			e1.printStackTrace();
 			MyLogger.logger.error(e1.getMessage());
 		}
-		MyLogger.logger.info(returnSb);
+		System.out.println(returnSb);
 
 		// 在第四遍过滤之前，进行经纬度的过滤，主要是将将维度识别为Location
 		FilterUtil.filterLongitudeLatitude(tempPath);
@@ -315,7 +315,7 @@ public class PreProcess {
 			MyLogger.logger.error(e.getMessage());
 		}
 		MyLogger.logger.info("第四遍过滤结果：\n");
-		MyLogger.logger.info(returnSb);
+		System.out.println(returnSb);
 		return returnSb;
 	}
 

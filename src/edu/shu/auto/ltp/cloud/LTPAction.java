@@ -19,6 +19,8 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
 
+import org.apache.commons.io.FileUtils;
+
 import edu.shu.auto.log.MyLogger;
 import edu.shu.auto.util.EventFactory;
 import edu.shu.auto.util.FileUtil;
@@ -57,8 +59,8 @@ public class LTPAction {
 	private BufferedWriter bw;
 	private String line;
 	private StringBuilder stringBuilder = new StringBuilder();
-	// private String ltpCloudURL = "http://api.ltp-cloud.com/analysis/?";// 使用哈工大的LTP调用接口
-	private String ltpVoiceCloudURL = "http://ltpapi.voicecloud.cn/analysis/?";// 使用哈工大与科大讯飞合作的语音云调用接口
+//	private String ltpCloudURL = "http://api.ltp-cloud.com/analysis/?";// 使用哈工大的LTP调用接口
+	 private String ltpVoiceCloudURL = "http://ltpapi.voicecloud.cn/analysis/?";// 使用哈工大与科大讯飞合作的语音云调用接口
 
 	public void getXML(File file, String type) {
 		String filePath = file.getAbsolutePath();
@@ -102,8 +104,8 @@ public class LTPAction {
 		format = type;
 		try {
 			text = URLEncoder.encode(text, "utf-8");// 对待分析文本进行编码
-			url = new URL(ltpVoiceCloudURL + "api_key=" + API_KEY + "&" + "text=" + text + "&" + "format=" + format + "&"
-					+ "pattern=" + PATTERN);
+			url = new URL(ltpVoiceCloudURL + "api_key=" + API_KEY + "&" + "text=" + text + "&" + "format=" + format + "&" + "pattern="
+					+ PATTERN);
 			conn = url.openConnection();// 打开连接
 			conn.connect();// 连接
 			br = new BufferedReader(new InputStreamReader(conn.getInputStream(), "utf-8"));
@@ -127,6 +129,15 @@ public class LTPAction {
 			e.printStackTrace();
 			MyLogger.logger.error(e.getMessage());
 		}
+		
+		System.out.println("------------------");
+		try {
+			System.out.println(FileUtils.readFileToString(new File(fileName)));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		System.out.println("------------------");
 		MyLogger.logger.info("LTP处理完毕");
 		// 在写完xml文件之后，调用EventFactory来解析xml文件
 		EventFactory.readXML(fileName);

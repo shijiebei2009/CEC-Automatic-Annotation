@@ -340,10 +340,8 @@ public class LTP_Parse {
 							if (neStrNO3 != null && "S-Nh".equalsIgnoreCase(neStrNO3)) {
 								end = indexTemp;// 第三个符合
 								MyLogger.logger.info("第三个符合");
-
 							} else if (neStrNO2 != null && "S-Nh".equalsIgnoreCase(neStrNO2)) {
 								end = indexTemp - 1;// 第二个符合
-
 								MyLogger.logger.info("第二个符合");
 							} else if (neStrNO1 != null && "S-Nh".equalsIgnoreCase(neStrNO3)) {
 								end = indexTemp - 2;// 第一个符合
@@ -352,14 +350,12 @@ public class LTP_Parse {
 								indexTemp = indexTemp - 3;// 将其归位
 								MyLogger.logger.info("没有匹配到");
 							}
-
 							// 退出循环的时候，将idIndex归位
 							end = indexTemp;
 							idTemp = end;
 							String participantStr = "";
 							for (int temp = start; temp <= end; temp++) {
 								participantStr += WordsUtil.contentHashMap.get(temp);
-
 							}
 							linkedList.add(Annotation.START_PARTICIPANT);
 							linkedList.add(participantStr);
@@ -398,7 +394,6 @@ public class LTP_Parse {
 							for (int temp = start; temp <= end; temp++) {
 								participantStr += WordsUtil.contentHashMap.get(temp);
 							}
-
 							if (!"".equals(participantStr)) {
 								linkedList.add(Annotation.START_PARTICIPANT);
 								linkedList.add(participantStr);
@@ -437,6 +432,7 @@ public class LTP_Parse {
 									}
 									index++;
 								}
+								//这里会导致一个致命的问题就是当没有发现触发词的时候就无法添加Event开始标签，从而在第二遍过滤中也就无法添加Event结束标签了
 								linkedList.add(index, Annotation.START_EVENT);
 								// 这里虽然加入了Event开始标签，但是结束标签不好判断，无法加入了，所以采用第二遍过滤的时候再加入Event结束标签
 								changeFlag = false;

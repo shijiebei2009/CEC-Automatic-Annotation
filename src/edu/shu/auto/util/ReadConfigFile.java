@@ -26,7 +26,7 @@ public class ReadConfigFile {
 	private static InputStream is;
 	private static Properties props;
 	static {
-		is = ReadConfigFile.class.getClassLoader().getResourceAsStream("config.properties");
+		is = Thread.currentThread().getContextClassLoader().getResourceAsStream("config.properties");
 		props = new Properties();
 	}
 
